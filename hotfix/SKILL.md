@@ -1,6 +1,6 @@
 ---
 name: hotfix
-description: Fix a production bug: confirm the branch is cut from production, find the root cause, add a failing regression test, apply the smallest fix, and finish with a back-merge checklist. Use for bugs users are hitting now, not for feature work.
+description: "Fix a production bug: confirm the branch is cut from production, find the root cause, add a failing regression test, apply the smallest fix, and finish with a back-merge checklist. Use for bugs users are hitting now, not for feature work."
 disable-model-invocation: true
 ---
 

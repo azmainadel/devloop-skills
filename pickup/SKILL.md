@@ -1,6 +1,6 @@
 ---
 name: pickup
-description: Continue work in a fresh session: read .desk/<branch>/checkpoint.md, git status and the ticket or spec status, then name the next step. Use at the start of a session to answer "where was I?".
+description: "Continue work in a fresh session: read .desk/<branch>/checkpoint.md, git status and the ticket or spec status, then name the next step. Use at the start of a session to answer \"where was I?\"."
 disable-model-invocation: true
 ---
 

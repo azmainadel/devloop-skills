@@ -1,6 +1,6 @@
 ---
 name: write-tickets
-description: Break a spec into tracer-bullet tickets, each declaring its blocking edges, written as one file per ticket under .desk/<branch>/tickets/. Optional: use when a spec is too big for about one session.
+description: "Break a spec into tracer-bullet tickets, each declaring its blocking edges, written as one file per ticket under .desk/<branch>/tickets/. Optional: use when a spec is too big for about one session."
 disable-model-invocation: true
 ---
 

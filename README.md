@@ -7,8 +7,10 @@ Works in any agent that supports [Agent Skills](https://agentskills.io/specifica
 ## Install
 
 ```bash
-npx -y skills add azmainadel/devloop-skills -g
+npx -y skills add azmainadel/devloop-skills -g --skill '*'
 ```
+
+`--skill '*'` installs all twelve without the picker. Drop `-g` to install into the current project only.
 
 These skills may clash with similar skills you already have installed (other TDD, debugging, review or interview skills), since both compete for the same triggers. If an agent picks the wrong one, run the devloop skill by name.
 
