@@ -1,3 +1,5 @@
+<img width="1600" height="838" alt="devloop-skills-banner" src="https://github.com/user-attachments/assets/1149a191-9d58-4cb3-b33e-ee5aa604f6d7" />
+
 # devloop-skills
 
 Idea to pull request in twelve skills. Brainstorm, spec, tickets, test-first build, fresh-session review, PR. Plus a hotfix flow for production bugs.
