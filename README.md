@@ -12,7 +12,20 @@ Works in any agent that supports [Agent Skills](https://agentskills.io/specifica
 npx -y skills add azmainadel/devloop-skills -g --skill '*'
 ```
 
-`--skill '*'` installs all eleven without the picker. Drop `-g` to install into the current project only.
+`--skill '*'` installs all eleven without the picker.
+
+Prefer the global install (`-g`). Without `-g`, the skills go into the current project as `.agents/skills/`, a `.claude/skills/` symlink and `skills-lock.json`. Don't commit those files. If you do, every teammate gets the skills too:
+
+- Codex ignores `disable-model-invocation`, so it can run `hotfix` or `review` on its own.
+- In Claude Code, `debug` and `verify` replace the built-in `/debug` and `/verify`.
+
+To keep a project install local to your clone:
+
+```bash
+printf '%s\n' .agents/skills/ .claude/skills/ skills-lock.json >> "$(git rev-parse --git-path info/exclude)"
+```
+
+If the repo already commits its own skills in those folders, exclude only the devloop skill folders. Otherwise git will also ignore any new team skill added there.
 
 These skills may clash with similar skills you already have installed (other TDD, debugging, review or interview skills), since both compete for the same triggers. If an agent picks the wrong one, run the devloop skill by name.
 
