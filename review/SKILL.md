@@ -20,7 +20,7 @@ Review in a session that didn't write the code: the author is blind to their own
 ### Scope
 
 1. Base branch: from `.desk/config.md`. If the file doesn't exist, create it as the `verify` skill describes.
-2. Diff: `git diff <base>...HEAD`, plus `git status` for uncommitted work (review it too, and flag that it's uncommitted).
+2. Diff: run `git fetch origin <base>`, then `git diff origin/<base>...HEAD`, plus `git status` for uncommitted work (review it too, and flag that it's uncommitted). Diffing against the remote keeps teammates' merged commits out of the review when your local `<base>` is behind. If the repo has no `origin`, use `git diff <base>...HEAD`. If the fetch fails (offline), use the last fetched `origin/<base>` and say the diff may include commits merged since.
 3. Intent: read `.desk/<branch>/spec.md` and any tickets, so you review against what was asked, not just what was written. Read `CONTEXT.md` and the ADRs in the touched area.
 4. Never review or report on `.desk/` itself.
 

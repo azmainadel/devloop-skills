@@ -15,7 +15,7 @@ Find the desk folder for the current branch (`git branch --show-current`, `/` re
 Read, in this order:
 
 1. `checkpoint.md`, if present: the note from the last session.
-2. `git status` and `git log --oneline <base>..HEAD` (base from `.desk/config.md`, else the remote's default branch): what's committed and what isn't.
+2. `git status`, then `git fetch origin <base>` and `git log --oneline origin/<base>..HEAD` (base from `.desk/config.md`, else the remote's default branch): what's committed and what isn't. Use the remote branch so teammates' merged commits don't show up as yours when your local `<base>` is behind. If the repo has no `origin`, use `<base>..HEAD`.
 3. `tickets/*.md`, if present: each ticket's `**Status:**`, blockers and unticked acceptance items. Otherwise, the unticked items in `spec.md`'s Acceptance list.
 4. `review.md`, if present: review findings not yet fixed.
 5. `notes.md`, if present: hotfix notes.
