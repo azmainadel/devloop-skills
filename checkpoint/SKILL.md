@@ -14,7 +14,7 @@ If the current ticket (or spec item) is finished and committed, there's nothing 
 
 ## Where
 
-`.desk/<branch>/checkpoint.md` for the current branch (`git branch --show-current`, `/` replaced by `-`). One checkpoint per branch: overwrite an older one, folding in anything from it that's still true.
+`.desk/<branch>/checkpoint.md` for the current branch (`git branch --show-current`, `/` replaced by `-`). One checkpoint per branch: overwrite an older one, folding in anything from it that's still true. If `.desk/.gitignore` doesn't exist, create it first, containing just `*`, so git ignores everything in `.desk/`.
 
 ## What to write
 

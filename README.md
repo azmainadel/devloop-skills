@@ -42,7 +42,7 @@ Check the install with `npx skills list -g`, then look for the skills in pi (`/s
   AGENTS.md            ← committed; setup adds "## Workflow"
   CONTEXT.md           ← committed; design writes the glossary
   docs/adr/            ← committed; design writes decisions
-  .desk/               ← never committed (listed in .git/info/exclude)
+  .desk/               ← never committed (.desk/.gitignore ignores everything in it)
     <branch>/          ← branch name with / replaced by -, e.g. feat-team-billing
       spec.md          ← write-spec
       tickets/01-*.md  ← write-tickets (optional)

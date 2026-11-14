@@ -63,7 +63,7 @@ Iterate until the user approves the breakdown.
 
 ### 5. Write the tickets
 
-Write one file per ticket under `.desk/<branch>/tickets/<NN>-<slug>.md`, numbered from `01` in dependency order (blockers first). Each file's "Blocked by" lists the numbers/titles it depends on. Use the template below: one ticket per file, never a single combined file.
+Write one file per ticket under `.desk/<branch>/tickets/<NN>-<slug>.md`, numbered from `01` in dependency order (blockers first). Each file's "Blocked by" lists the numbers/titles it depends on. Use the template below: one ticket per file, never a single combined file. If `.desk/.gitignore` doesn't exist, create it first, containing just `*`, so git ignores everything in `.desk/`.
 
 Work the **frontier**: any ticket whose blockers are all done. For a purely linear chain that means top to bottom.
 

@@ -6,7 +6,7 @@ disable-model-invocation: true
 
 # Hotfix
 
-You're finding a cause, not designing. No brainstorm, spec or tickets. Notes go in `.desk/<branch>/notes.md`.
+You're finding a cause, not designing. No brainstorm, spec or tickets. Notes go in `.desk/<branch>/notes.md`. If `.desk/.gitignore` doesn't exist, create it first, containing just `*`, so git ignores everything in `.desk/`.
 
 ## 1. Stop the bleeding (the user's call)
 

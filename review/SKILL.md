@@ -28,7 +28,7 @@ Then follow the method below: the five axes, the review process, and the checkli
 
 ### Output: `.desk/<branch>/review.md`
 
-Write findings here, not into code. One finding per heading, highest severity first:
+Write findings here, not into code. If `.desk/.gitignore` doesn't exist, create it first, containing just `*`, so git ignores everything in `.desk/`. One finding per heading, highest severity first:
 
 ```markdown
 # Review: <branch> vs <base>

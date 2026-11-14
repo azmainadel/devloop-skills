@@ -18,7 +18,7 @@ The repo's `## Workflow` section (in `AGENTS.md` or `CLAUDE.md`) describes the d
 
    Check with the user that these seams match their expectations. These are the **agreed seams**: `implement` tests at them without asking again.
 
-4. Write the spec using the template below to `.desk/<branch>/spec.md`.
+4. Write the spec using the template below to `.desk/<branch>/spec.md`. If `.desk/.gitignore` doesn't exist, create it first, containing just `*`, so git ignores everything in `.desk/`.
 
 5. Stop. Tell the user the path and ask them to read it. Next is either `write-tickets` (if the work spans several sessions) or `implement spec` (if it fits in about one).
 
