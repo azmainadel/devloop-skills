@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 # Bisection script to find which test creates unwanted files/state
 # Usage: ./find-polluter.sh <file_or_dir_to_check> <test_pattern>
-# Example: ./find-polluter.sh '.git' 'src/**/*.test.ts'
+# Example: ./find-polluter.sh 'src/.git' 'src/**/*.test.ts'
 
 set -e
 
 if [ $# -ne 2 ]; then
   echo "Usage: $0 <file_to_check> <test_pattern>"
-  echo "Example: $0 '.git' 'src/**/*.test.ts'"
+  echo "Example: $0 'src/.git' 'src/**/*.test.ts'"
   exit 1
 fi
 
@@ -34,16 +34,23 @@ fi
 echo "Found $TOTAL test files"
 echo ""
 
+if [ "$TOTAL" -eq 0 ]; then
+  echo "❌ No test files match: $TEST_PATTERN"
+  echo "   Check the pattern; it's matched against paths from the current directory."
+  exit 2
+fi
+
+# If the pollution is already there, no test can be shown to create it.
+if [ -e "$POLLUTION_CHECK" ]; then
+  echo "❌ $POLLUTION_CHECK already exists before any test ran."
+  echo "   Remove it, then run this script again:"
+  ls -la "$POLLUTION_CHECK"
+  exit 2
+fi
+
 COUNT=0
 for TEST_FILE in $TEST_FILES; do
   COUNT=$((COUNT + 1))
-
-  # Skip if pollution already exists
-  if [ -e "$POLLUTION_CHECK" ]; then
-    echo "⚠️  Pollution already exists before test $COUNT/$TOTAL"
-    echo "   Skipping: $TEST_FILE"
-    continue
-  fi
 
   echo "[$COUNT/$TOTAL] Testing: $TEST_FILE"
 
@@ -68,5 +75,5 @@ for TEST_FILE in $TEST_FILES; do
 done
 
 echo ""
-echo "✅ No polluter found - all tests clean!"
+echo "✅ No polluter found: ran $TOTAL test files and none created $POLLUTION_CHECK"
 exit 0
