@@ -14,7 +14,7 @@ If users are blocked and the cause is unknown, ask whether the last deploy has b
 
 ## 2. Check the branch
 
-Read the production branch from the repo's `## Workflow` section (default `main`).
+Read the production branch from `.desk/config.md`. If the file doesn't exist, create it as the `verify` skill describes.
 
 - The current branch must be a `hotfix/<bug>` branch cut from an up-to-date production branch: `git merge-base --is-ancestor origin/<prod> HEAD` succeeds, and `git log origin/<prod>..HEAD` shows no commits other than this fix.
 - If not, stop and give the user the commands: `git switch <prod> && git pull && git switch -c hotfix/<bug>`. Don't cut from `develop` or `staging`: they hold unreleased work.
@@ -33,7 +33,7 @@ Follow the `implement` skill's rules of the loop, with these hotfix limits:
 
 1. **Regression test first.** It must fail on the current code for the same reason users see. Show the failing output.
 2. **Smallest fix** that makes it pass. **No refactors**, no "while I'm here" improvements, no dependency bumps unless the bug is in the dependency. Note anything else you'd change under "Follow-ups" in `notes.md`.
-3. **Prove it**, as the `verify` skill requires: revert the fix, the test fails; restore the fix, the test passes. Then run every command under **Checks**.
+3. **Prove it**, as the `verify` skill requires: revert the fix, the test fails; restore the fix, the test passes. Then run every command under **Checks** in `.desk/config.md`.
 
 Propose a commit (stage the test and the fix, never `.desk/`) and stop. Commit only when the user asks.
 

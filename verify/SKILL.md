@@ -105,11 +105,38 @@ Skip any step = lying, not verifying
 
 ## Which Commands
 
-The repo's `## Workflow` section (in `AGENTS.md` or `CLAUDE.md`) lists the **Checks**: run all of them, in order, before any completion claim. If there's no Workflow section, find the commands in the build config or CI and say which ones you used.
+Run every command under **Checks** in `.desk/config.md`, in order, before any completion claim. If the file doesn't exist yet, create it first (see **Repo config** below).
 
 If you have a diagnostics tool (e.g. `lens_diagnostics` in pi, or an IDE/LSP diagnostics tool), also run it on the files you changed. It catches type and lint errors the test suite can miss, but it doesn't replace the Checks.
 
 Show the output, or the relevant part of it with the exit code, in your message. A claim without the output next to it is not verified.
+
+## Repo config
+
+The devloop skills keep per-repo settings in `.desk/config.md`. It's local to this clone and never committed, so teammates who don't use these skills never see it:
+
+```markdown
+# devloop config
+
+## Checks
+
+1. `<command>`
+2. `<command>`
+
+## Branches
+
+- Base: `<base>` (features branch from and are reviewed against this)
+- Production: `<prod>` (hotfixes branch from this)
+```
+
+If the file exists, use it. If it's missing, build it. If `AGENTS.md` or `CLAUDE.md` has a `## Workflow` section left by the old `setup` skill, start from its Checks and Branches.
+
+1. **Checks.** Find the commands that gate a merge. CI workflow files are the best source, then `package.json` scripts, `Makefile`, `pyproject.toml`, `Cargo.toml`, `go.mod`. List them in the order they should run. If you find none, ask; never invent one.
+2. **Branches.** Production is the remote's default branch (`git symbolic-ref --short refs/remotes/origin/HEAD`, minus the `origin/` prefix), falling back to `main` or `master`. If a `develop` branch exists (`git branch -a`), ask whether features branch from it. Otherwise the base is the production branch.
+3. **Confirm** what you found with the user, leading with your proposal so they can accept it in a word. Use a structured question tool (e.g. `ask_user_question` in pi, `AskUserQuestion` in Claude Code) when available.
+4. **Save** it to `.desk/config.md`. If `.desk/.gitignore` doesn't exist, create it first, containing just `*`, so git ignores everything in `.desk/`.
+
+This happens once per clone. If a saved command later stops working because it was renamed or removed, say so and update the file with the user.
 
 ## When To Apply
 

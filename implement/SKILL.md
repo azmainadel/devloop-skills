@@ -24,7 +24,7 @@ Tell the user which file you're working from before writing any code.
 - The ticket's **What to build** and **Acceptance**, or the spec's **Acceptance** checklist.
 - The spec's **Testing Decisions**. Its **Agreed seams** are already confirmed: test at them without asking again. (For a ticket, read the spec in the same desk folder.)
 - `CONTEXT.md` (if it exists), so test names and interface vocabulary match the project's domain language, and the ADRs in the area you're touching.
-- The **Checks** in the repo's `## Workflow` section.
+- The **Checks** in `.desk/config.md`. If the file doesn't exist, create it as the `verify` skill describes.
 
 ### 3. Size check (spec only)
 
@@ -70,7 +70,7 @@ Ask: "What's the public interface, and which seams should we test?"
 
 ## Finishing
 
-1. Run every command under **Checks** in the `## Workflow` section and show the output. Follow the `verify` skill: no "done" without fresh evidence.
+1. Run every command under **Checks** in `.desk/config.md` and show the output. Follow the `verify` skill: no "done" without fresh evidence.
 2. **Ticket**: set `**Status:** done` once every acceptance item is ticked and the checks pass. If anything is left, keep it `in-progress` and say what remains.
 3. **Propose a commit**: list the files to stage (never `.desk/`) and a commit message: short imperative subject, body saying what changed and why. Then stop. Commit only when the user asks.
 4. Name the next step: the next unblocked ticket, the next unchecked spec item, or `review` (in a fresh session) when everything is done.

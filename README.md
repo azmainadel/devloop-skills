@@ -43,6 +43,7 @@ Check the install with `npx skills list -g`, then look for the skills in pi (`/s
   CONTEXT.md           ← committed; design writes the glossary
   docs/adr/            ← committed; design writes decisions
   .desk/               ← never committed (.desk/.gitignore ignores everything in it)
+    config.md          ← checks and branches; verify asks once per clone
     <branch>/          ← branch name with / replaced by -, e.g. feat-team-billing
       spec.md          ← write-spec
       tickets/01-*.md  ← write-tickets (optional)

@@ -19,7 +19,7 @@ Review in a session that didn't write the code: the author is blind to their own
 
 ### Scope
 
-1. Base branch: from the repo's `## Workflow` section, else `main`.
+1. Base branch: from `.desk/config.md`. If the file doesn't exist, create it as the `verify` skill describes.
 2. Diff: `git diff <base>...HEAD`, plus `git status` for uncommitted work (review it too, and flag that it's uncommitted).
 3. Intent: read `.desk/<branch>/spec.md` and any tickets, so you review against what was asked, not just what was written. Read `CONTEXT.md` and the ADRs in the touched area.
 4. Never review or report on `.desk/` itself.
@@ -75,7 +75,7 @@ Leave out empty sections. Then tell the user: read `review.md`, strike out or de
 1. Read `.desk/<branch>/review.md`. Skip any finding that has been deleted, struck through (`~~...~~`), or marked `skip`/`won't fix`. Respect any reason the user wrote.
 2. Fix the rest in severity order: Critical, Required, then Optional, Nit and Refactors. Do the Refactors last, as a separate change, so they can be committed separately.
 3. A finding that turns out to be wrong: don't force it. Leave it unfixed and say why.
-4. Run every command under **Checks** in the `## Workflow` section and show the output. Follow the `verify` skill.
+4. Run every command under **Checks** in `.desk/config.md` and show the output. Follow the `verify` skill.
 5. Report what was fixed and skipped, propose a commit (fixes and refactors as separate commits if both exist), and tell the user `review.md` can be deleted once committed. Don't delete it yourself, and never commit unless asked.
 
 ## Method
