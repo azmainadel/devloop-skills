@@ -84,8 +84,7 @@ flowchart LR
 2. **Pin down the idea.** `/skill:design <idea in 2-3 lines>`. Writes `CONTEXT.md` and ADRs as decisions settle. Done when the questions run out and you confirm the summary.
 3. **Spec.** `/skill:write-spec`. It confirms the test seams with you, writes `.desk/<branch>/spec.md`, and stops. Read it and fix it now.
 4. **Tickets (optional).** If the work is more than about one session, `/skill:write-tickets`. Otherwise skip to step 5 with the spec.
-5. **Build.**
-   btw
+5. **Build.** Fresh session, then `/skill:implement`. It picks the next unblocked ticket, or the spec if you skipped tickets, and builds it test-first.
    - When it finishes, it proposes a commit. Say "commit this". Next ticket, in a fresh session.
    - Commit after every ticket, so only one ticket is ever open.
 6. **Review in a fresh session.** Start a fresh session, then `/skill:review`. It writes `.desk/<branch>/review.md` and edits no code.
