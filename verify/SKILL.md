@@ -129,7 +129,7 @@ The devloop skills keep per-repo settings in `.desk/config.md`. It's local to th
 - Production: `<prod>` (hotfixes branch from this)
 ```
 
-If the file exists, use it. If it's missing, build it. If `AGENTS.md` or `CLAUDE.md` has a `## Workflow` section left by the old `setup` skill, start from its Checks and Branches.
+If the file exists, use it. If it's missing, build it with the steps below. A repo set up by the old `setup` skill has a `## Workflow` section in `AGENTS.md` or `CLAUDE.md`. If you find one, start from its Checks and Branches.
 
 1. **Checks.** Find the commands that gate a merge. CI workflow files are the best source, then `package.json` scripts, `Makefile`, `pyproject.toml`, `Cargo.toml`, `go.mod`. List them in the order they should run. If you find none, ask; never invent one.
 2. **Branches.** Production is the remote's default branch (`git symbolic-ref --short refs/remotes/origin/HEAD`, minus the `origin/` prefix), falling back to `main` or `master`. If a `develop` branch exists (`git branch -a`), ask whether features branch from it. Otherwise the base is the production branch.

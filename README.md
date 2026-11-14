@@ -2,7 +2,7 @@
 
 # devloop-skills
 
-Idea to pull request in twelve skills. Brainstorm, spec, tickets, test-first build, fresh-session review, PR. Plus a hotfix flow for production bugs.
+Idea to pull request in eleven skills. Brainstorm, spec, tickets, test-first build, fresh-session review, PR. Plus a hotfix flow for production bugs.
 
 Works in any agent that supports [Agent Skills](https://agentskills.io/specification), including **Pi**, **Claude Code** and **Codex**.
 
@@ -12,7 +12,7 @@ Works in any agent that supports [Agent Skills](https://agentskills.io/specifica
 npx -y skills add azmainadel/devloop-skills -g --skill '*'
 ```
 
-`--skill '*'` installs all twelve without the picker. Drop `-g` to install into the current project only.
+`--skill '*'` installs all eleven without the picker. Drop `-g` to install into the current project only.
 
 These skills may clash with similar skills you already have installed (other TDD, debugging, review or interview skills), since both compete for the same triggers. If an agent picks the wrong one, run the devloop skill by name.
 
@@ -22,7 +22,6 @@ Check the install with `npx skills list -g`, then look for the skills in pi (`/s
 
 | Skill           | Runs                                       | Use for                                                                                    |
 | --------------- | ------------------------------------------ | ------------------------------------------------------------------------------------------ |
-| `setup`         | You, once per repo                         | Adds `## Workflow` to AGENTS.md (checks, branches, desk layout); keeps `.desk/` out of git |
 | `brainstorm`    | You, or on its own when you say "grill me" | Thinking an idea through. Interview only, writes no files                                  |
 | `design`        | You                                        | An idea you're going to build. Interview that also writes `CONTEXT.md` and ADRs            |
 | `write-spec`    | You                                        | Writes `.desk/<branch>/spec.md`, ending in an acceptance checklist                         |
@@ -39,7 +38,6 @@ Check the install with `npx skills list -g`, then look for the skills in pi (`/s
 
 ```
 <your-repo>/
-  AGENTS.md            ← committed; setup adds "## Workflow"
   CONTEXT.md           ← committed; design writes the glossary
   docs/adr/            ← committed; design writes decisions
   .desk/               ← never committed (.desk/.gitignore ignores everything in it)
@@ -53,6 +51,16 @@ Check the install with `npx skills list -g`, then look for the skills in pi (`/s
 ```
 
 `.desk/` is local: it doesn't follow you to another machine or a fresh clone.
+
+There's no setup step. The first skill that needs your checks or branches (usually `implement`) finds them, asks you to confirm, and saves them to `.desk/config.md`. Nothing is added to `AGENTS.md`, so teammates who don't use these skills see no change.
+
+### Upgrading from `setup`
+
+Earlier versions had a `setup` skill that added a `## Workflow` section to `AGENTS.md`. To move off it:
+
+1. Run `npx skills remove -g setup`.
+2. Run any devloop skill that needs the checks, e.g. `/skill:verify`. It copies the checks and branches from the old section into `.desk/config.md`.
+3. Delete the `## Workflow` section from `AGENTS.md`, plus the `@AGENTS.md` line in `CLAUDE.md` if setup added it, and commit.
 
 ## Feature flow
 
@@ -72,19 +80,18 @@ flowchart LR
   H --> I[review fix + PR]
 ```
 
-1. **Once per repo.** `/skill:setup`.
-2. **Branch.** `git switch -c feat/<name>`. The desk folder is named after the branch, so branch first.
-3. **Pin down the idea.** `/skill:design <idea in 2-3 lines>`. Writes `CONTEXT.md` and ADRs as decisions settle. Done when the questions run out and you confirm the summary.
-4. **Spec.** `/skill:write-spec`. It confirms the test seams with you, writes `.desk/<branch>/spec.md`, and stops. Read it and fix it now.
-5. **Tickets (optional).** If the work is more than about one session, `/skill:write-tickets`. Otherwise skip to step 6 with the spec.
-6. **Build.**
+1. **Branch.** `git switch -c feat/<name>`. The desk folder is named after the branch, so branch first.
+2. **Pin down the idea.** `/skill:design <idea in 2-3 lines>`. Writes `CONTEXT.md` and ADRs as decisions settle. Done when the questions run out and you confirm the summary.
+3. **Spec.** `/skill:write-spec`. It confirms the test seams with you, writes `.desk/<branch>/spec.md`, and stops. Read it and fix it now.
+4. **Tickets (optional).** If the work is more than about one session, `/skill:write-tickets`. Otherwise skip to step 5 with the spec.
+5. **Build.**
    btw
    - When it finishes, it proposes a commit. Say "commit this". Next ticket, in a fresh session.
    - Commit after every ticket, so only one ticket is ever open.
-7. **Review in a fresh session.** Start a fresh session, then `/skill:review`. It writes `.desk/<branch>/review.md` and edits no code.
+6. **Review in a fresh session.** Start a fresh session, then `/skill:review`. It writes `.desk/<branch>/review.md` and edits no code.
    - Strike out or delete findings you disagree with (a one-line reason helps), then `/skill:review fix`.
    - Commit. Refactors come as a separate commit. Delete `review.md`.
-8. **PR.** Read the diff, then say "push and open a PR" (runs `git push` + `gh pr create`).
+7. **PR.** Read the diff, then say "push and open a PR" (runs `git push` + `gh pr create`).
 
 `implement` never commits, pushes or opens PRs. You ask for each.
 

@@ -6,11 +6,9 @@ disable-model-invocation: true
 
 This skill takes the current conversation context and codebase understanding and produces a spec. Do NOT interview the user; just synthesize what you already know.
 
-The repo's `## Workflow` section (in `AGENTS.md` or `CLAUDE.md`) describes the desk layout. If it's missing, tell the user to run the `setup` skill first.
-
 ## Process
 
-1. **Find the desk folder.** Run `git branch --show-current` and replace `/` with `-`: `feat/team-billing` → `.desk/feat-team-billing/`. If you're on the base branch, ask the user for a branch name, then suggest `git switch -c <name>` before writing. If `spec.md` already exists there, ask before overwriting it.
+1. **Find the desk folder.** Run `git branch --show-current` and replace `/` with `-`: `feat/team-billing` → `.desk/feat-team-billing/`. If you're on the base branch (from `.desk/config.md`, else the remote's default branch), ask the user for a branch name, then suggest `git switch -c <name>` before writing. If `spec.md` already exists there, ask before overwriting it.
 
 2. Explore the repo to understand the current state of the codebase, if you haven't already. Use the project's domain glossary vocabulary (`CONTEXT.md`) throughout the spec, and respect any ADRs in the area you're touching.
 

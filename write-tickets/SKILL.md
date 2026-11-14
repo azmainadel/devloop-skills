@@ -8,8 +8,6 @@ disable-model-invocation: true
 
 Break a spec into a set of **tickets**: tracer-bullet vertical slices, each declaring the tickets that **block** it.
 
-The repo's `## Workflow` section (in `AGENTS.md` or `CLAUDE.md`) describes the desk layout. If it's missing, tell the user to run the `setup` skill first.
-
 ## Process
 
 ### 1. Gather context

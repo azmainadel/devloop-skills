@@ -20,7 +20,7 @@ Read, in this order:
 4. `review.md`, if present: review findings not yet fixed.
 5. `notes.md`, if present: hotfix notes.
 
-No desk folder and no checkpoint? Say so, and suggest `write-spec` (or `setup`, if the repo has no `## Workflow` section).
+No desk folder and no checkpoint? Say so, and suggest `write-spec`.
 
 ## 2. Reconcile
 
